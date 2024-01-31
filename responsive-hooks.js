@@ -41,20 +41,27 @@
   }
 
   window.ResponsiveHooks = {
-    on: function(breakpoint, callback) {
-      if (!callbacks[breakpoint]) {
-        callbacks[breakpoint] = [];
-      }
-      callbacks[breakpoint].push(callback);
-      if (currentBreakpoint === null) {
-        currentBreakpoint = getBreakpoint(window.innerWidth);
+    on: function(breakpoints, callback) {
+      if (!Array.isArray(breakpoints)) {
+        breakpoints = [breakpoints];
       }
 
-      if (currentBreakpoint === breakpoint) {
-        callback();
-      }
+      breakpoints.forEach(breakpoint => {
+        if (!callbacks[breakpoint]) {
+          callbacks[breakpoint] = [];
+        }
+        callbacks[breakpoint].push(callback);
+        if (currentBreakpoint === null) {
+          currentBreakpoint = getBreakpoint(window.innerWidth);
+        }
+
+        if (currentBreakpoint === breakpoint) {
+          callback();
+        }
+      });
     }
   };
+
 
   window.addEventListener('resize', resizeHandler);
   resizeHandler();

@@ -19,17 +19,25 @@ To use ResponsiveHooks in your project, include the `responsive-hooks.js` (or `r
 
 ## Usage
 
-After including the script, you can register callback functions for various breakpoints like this:
+After including the script in your project, you can use ResponsiveHooks to register callback functions for various breakpoints. You can specify a single breakpoint or an array of breakpoints.
+
+To register a callback for a single breakpoint:
 
 ```js
 window.ResponsiveHooks.on('sm', function() {
     // Your code here will run when the screen size changes to 'sm'
 });
+```
 
-window.ResponsiveHooks.on('md', function() {
-    // Your code here will run when the screen size changes to 'md'
+To register the same callback for multiple breakpoints:
+
+```js
+window.ResponsiveHooks.on(['lg', 'xl', 'xxl'], function() {
+    // Your code here will run when the screen size changes to 'lg', 'xl', or 'xxl'
 });
 ```
+
+This flexibility allows you to easily manage responsive behavior for various screen sizes with minimal code.
 
 
 ## API Reference
